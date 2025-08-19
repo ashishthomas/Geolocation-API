@@ -28,6 +28,7 @@ const LocationDetails = () => {
     type,
     placeClass,
     importance,
+    accuracy,
   } = state;
 
   // Format address: prefer displayName, fallback to structured object
@@ -57,9 +58,14 @@ const LocationDetails = () => {
         <p>
           <strong>Importance:</strong> {importance?.toFixed(2)}
         </p>
+        {accuracy && (
+          <p>
+            <strong>Accuracy:</strong> ±{accuracy.toFixed(0)} meters
+          </p>
+        )}
       </div>
 
-      {/* Optional: show structured address breakdown */}
+      {/* Optional structured breakdown */}
       {address && (
         <div className="mt-4 bg-gray-50 border rounded-lg shadow p-4">
           <h3 className="font-semibold mb-2">Structured Address</h3>
@@ -75,7 +81,7 @@ const LocationDetails = () => {
 
       <button
         onClick={() => navigate("/")}
-        className="mt-4 px-4 py-2 bg-gray-700 text-white rounded cursor-pointer hover:bg-gray-800 transition duration-200"
+        className="mt-4 px-4 py-2 bg-gray-700 text-white rounded"
       >
         🔙 Back
       </button>
